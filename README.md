@@ -1,6 +1,6 @@
 # Windows Server 2025 Home Lab
 
-This is my own personal project where I built a mini version of a company computer network — all inside my own PC, using free software. I set up a server, connected another computer to it, and configured a bunch of things that real IT professionals use every day at their jobs.
+This is my personal project where I built a mini version of a company computer network, all inside my own PC, using free software. I set up a server, connected another computer to it, and configured a bunch of things that real IT professionals use every day at their jobs.
 
 **Author:** Clinton Kehinde
 
@@ -10,7 +10,7 @@ This is my own personal project where I built a mini version of a company comput
 
 Big companies use something called a "server" — basically a powerful computer that manages everyone else's computers, logins, passwords, shared files, and internet settings. I wanted to learn how that works, so I built my own server at home using a program called VMware, which lets you run a "fake" computer (called a virtual machine) inside your real computer, without messing anything up.
 
-Think of it like a game inside a game — I have my real laptop (Windows 11), and inside it, I created a pretend server computer (Windows Server 2025) that I could experiment on safely. If I broke something, I could just undo it or start over — no real damage done.
+Think of it like a game inside a game I have my real laptop (Windows 11), and inside it, I created a pretend server computer (Windows Server 2025) that I could experiment on safely. If I broke something, I could just undo it or start over — no real damage done.
 
 ## My Setup
 
