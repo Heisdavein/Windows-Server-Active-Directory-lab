@@ -3,6 +3,9 @@
 This is my personal project where I built a mini version of a company computer network, all inside my own PC, using free software. I set up a server, connected another computer to it, and configured a bunch of things that real IT professionals use every day at their jobs.
 
 **Author:** Clinton Kehinde
+The complete step-by-step build, including screenshots and detailed explanations, is available here:
+
+**➡️ [Windows Server 2025 Home Lab Documentation (PDF)](https://github.com/Heisdavein/Windows-Server-Active-Directory-lab/tree/main)
 
 ---
 
@@ -89,3 +92,8 @@ The full write-up with all the details and steps is in the project document in t
 - More organized folders for a bigger, more realistic setup
 - A certificate system for extra security
 - A second virtual machine host to simulate multiple office locations
+- ## 📄 Full Documentation
+
+The complete step-by-step build, including screenshots and detailed explanations, is available here:
+
+**➡️ [Windows Server 2025 Home Lab Documentation (PDF)](https://github.com/Heisdavein/Windows-Server-Active-Directory-lab/tree/main)
