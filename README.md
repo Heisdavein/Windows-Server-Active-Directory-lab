@@ -5,8 +5,6 @@ This is my personal project where I built a mini version of a company computer n
 **Author:** Clinton Kehinde
 The complete step-by-step build, including screenshots and detailed explanations, is available here:
 
-**➡️ [Windows Server 2025 Home Lab Documentation (PDF)](https://github.com/Heisdavein/Windows-Server-Active-Directory-lab/tree/main)
-
 ---
 
 ## What is this project?
@@ -92,8 +90,56 @@ The full write-up with all the details and steps is in the project document in t
 - More organized folders for a bigger, more realistic setup
 - A certificate system for extra security
 - A second virtual machine host to simulate multiple office locations
-- ## 📄 Full Documentation
 
-The complete step-by-step build, including screenshots and detailed explanations, is available here:
+- Section 1: Setting Up the Virtual Machine in VMware
+Before I could install Windows Server 2025, I first needed to create a virtual environment where it could run. Rather than installing Windows Server directly on my computer, I chose to use VMware Workstation, which allowed me to create a virtual machine (VM). A virtual machine behaves like a completely separate computer, with its own processor, memory, storage, and network connection, while sharing the hardware of my Windows 11 PC.
+One of the biggest advantages of using a virtual machine is that I could experiment freely without affecting my main operating system. If I made a mistake, I could simply restore a snapshot or rebuild the server, making it the perfect environment for learning and testing.
+Step 1. Download VMware Workstation
+The first task was to install the virtualisation software.
+1.	I visited the VMware website and created a free account.
+2.	I downloaded VMware Workstation.
+3.	After the download completed, I ran the installer, followed the installation wizard, and restarted my computer when prompted.
+Once VMware was installed, I was ready to create my virtual server.
+________________________________________
+Step 2. Download the Windows Server 2025 ISO
+With VMware installed, I needed the Windows Server installation media.
+4.	I visited Microsoft's Evaluation Center and searched for Windows Server 2025.
+5.	After completing the registration form, I selected the ISO download option.
+6.	Once the download finished, I saved the ISO file in a dedicated folder on my D: drive so it would be easy to locate later.
+Having the ISO downloaded meant I had everything required to build my virtual server.
+________________________________________
+Step 3 – Create the Virtual Machine
+I then launched VMware Workstation and created my first virtual machine.
+7.	I selected Create a New Virtual Machine and chose the Typical configuration before clicking Next.
+8.	I selected I will install the operating system later, then clicked Next.
+9.	For the operating system, I selected Microsoft Windows, followed by Windows Server 2025 from the version list.
+10.	I named the virtual machine server01 and selected a location on my computer where the virtual machine files would be stored. Before continuing, I confirmed there was enough free storage available, as Windows Server and future lab files would require a reasonable amount of disk space.
+11.	I configured the virtual hard disk with a capacity of 60 GB and chose Store virtual disk as a single file. Although Windows Server can run with less storage, allocating additional space provides flexibility for installing server roles, creating shared folders, and expanding the lab later.
+12.	Before completing the wizard, I selected Customize Hardware so I could adjust the virtual machine's hardware settings.
+________________________________________
+Configuring the Virtual Hardware
+To give the virtual machine enough resources for the services I planned to install, I configured the hardware as follows.
+Memory (RAM)
+I allocated 8 GB (8192 MB) of memory.
+Although Windows Server can operate with much less memory, assigning 8 GB provided a smoother experience while running services such as Active Directory, DNS, DHCP, and File Services simultaneously.
+Processors
+I assigned 4 processor cores, matching the capabilities of my host computer.
+I also enabled hardware virtualisation support (Intel VT-x/EPT or AMD-V/RVI, depending on the processor), allowing Windows Server to make full use of the CPU's virtualisation features.
+Network Adapter
+For networking, I selected Bridged mode.
+This configuration allows the virtual machine to appear as a separate device on my local network. Instead of sharing my computer's network connection behind Network Address Translation (NAT), the server receives its own IP address from the router, just like a physical server would. This made it much easier to test services such as Active Directory, DNS, DHCP, and file sharing across multiple virtual machines.
+CD/DVD Drive
+Finally, I configured the virtual DVD drive to use the Windows Server 2025 ISO that I had downloaded earlier.
+With the installation media attached, the virtual machine was ready to boot directly into the Windows Server setup process.
+After reviewing the hardware configuration, I clicked Close, followed by Finish, and VMware created the virtual machine.
+At this point, the virtual machine existed, but Windows Server itself had not yet been installed.
+________________________________________
+Creating a Snapshot
+Before powering on the virtual machine for the first time, I created a VMware snapshot.
+Using VM → Snapshot → Take Snapshot, I saved the current state of the virtual machine and named it Before Install.
+This snapshot provided a clean recovery point that I could return to at any time if the installation failed or if I wanted to restart the project without creating a brand-new virtual machine from scratch.
+Although creating snapshots is optional, I found them incredibly useful throughout the project. They allowed me to experiment confidently, knowing I could always roll the virtual machine back to a known working state within minutes.
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/3bb97711-3d19-4bb4-b225-b0f7285637bc" />
 
-**➡️ [Windows Server 2025 Home Lab Documentation (PDF)](https://github.com/Heisdavein/Windows-Server-Active-Directory-lab/tree/main)
+  
+
