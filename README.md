@@ -116,7 +116,7 @@ I then launched VMware Workstation and created my first virtual machine.
 10.	I named the virtual machine server01 and selected a location on my computer where the virtual machine files would be stored. Before continuing, I confirmed there was enough free storage available, as Windows Server and future lab files would require a reasonable amount of disk space.
 11.	I configured the virtual hard disk with a capacity of 60 GB and chose Store virtual disk as a single file. Although Windows Server can run with less storage, allocating additional space provides flexibility for installing server roles, creating shared folders, and expanding the lab later.
 12.	Before completing the wizard, I selected Customize Hardware so I could adjust the virtual machine's hardware settings.
-________________________________________
+
 Configuring the Virtual Hardware
 To give the virtual machine enough resources for the services I planned to install, I configured the hardware as follows.
 Memory (RAM)
@@ -133,7 +133,7 @@ Finally, I configured the virtual DVD drive to use the Windows Server 2025 ISO t
 With the installation media attached, the virtual machine was ready to boot directly into the Windows Server setup process.
 After reviewing the hardware configuration, I clicked Close, followed by Finish, and VMware created the virtual machine.
 At this point, the virtual machine existed, but Windows Server itself had not yet been installed.
-________________________________________
+
 Creating a Snapshot
 Before powering on the virtual machine for the first time, I created a VMware snapshot.
 Using VM → Snapshot → Take Snapshot, I saved the current state of the virtual machine and named it Before Install.
@@ -196,27 +196,33 @@ Step 6: Logging In for the First Time
 
 20.  Once the desktop loaded, a few introductory pop-up windows, such as those promoting Windows Admin Center and Azure Arc, appeared. Since they were not required for this project, I closed them by clicking the X button, leaving me with a clean desktop ready for the next stage of the server configuration.
 21.  <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/d267f019-5fbf-45a6-8f43-c841e37c5af5" />
+
 Section 3: First-Time Setup and Basic Configuration
 With Windows Server 2025 successfully installed, my next step was to perform the initial server configuration. Before installing any server roles or additional features, I wanted to ensure the operating system was configured correctly and ready for the rest of the project.
 There are a few essential tasks that I always complete on a newly installed Windows Server. These include configuring the correct time zone, assigning a static IP address, enabling Remote Desktop, and renaming the server. Completing these baseline configurations early helps create a stable environment and prevents configuration issues later, especially when deploying services such as Active Directory and DNS.
+
 Step 1: Opening Server Manager
 After logging into Windows Server for the first time, Server Manager launched automatically. This is the primary management console for Windows Server, providing a central location for configuring the server, installing roles and features, and monitoring its health.
 Since I would be using Server Manager throughout this project, I pinned it to the taskbar for quick access.
 From the navigation pane on the left, I selected Local Server. This page displays the server's current configuration, including the computer name, network settings, time zone, Remote Desktop status, and several other system properties. One feature I particularly appreciate is that almost every setting on this page can be modified simply by clicking its current value.
+
 Step 2: Configuring the Correct Time Zone
 Having the correct system time is important for authentication, logging, and communication between servers. To ensure the server reflected my local region, I updated the time zone before continuing with the rest of the configuration.
 13.	In Local Server, I located the Time Zone field.
 14.	I clicked the current time zone to open the Date and Time settings.
 15.	Next, I selected Change time zone... and chose the time zone that matched my location.
 16.	After clicking OK, the system clock updated immediately to reflect the correct local time.
+
 Step 3: Disabling Internet Explorer Enhanced Security Configuration
 Windows Server enables Internet Explorer Enhanced Security Configuration (IE ESC) by default. This feature is designed to improve security by restricting web browsing, but it can also make downloading software, drivers, and updates unnecessarily difficult during a lab setup.
 Because this server was being used in a controlled home lab environment, I chose to disable the feature temporarily to make the configuration process smoother.
+
 17.	In Local Server, I located IE Enhanced Security Configuration and clicked its current status.
 18.	I changed the setting to Off for both Administrators and Users.
 19.	Finally, I clicked OK to apply the changes.
 Note: In a production environment, I would leave Internet Explorer Enhanced Security Configuration enabled because it provides an additional layer of protection against malicious websites. I disabled it here solely because this server was built for learning and testing purposes.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/f2af487c-3726-442b-8d91-276a505cf9e8" />
+
 Step 4: Assigning a Static IP Address
 One of the most important configuration tasks was assigning the server a static IP address. Unlike client computers, servers should not rely on DHCP because their network address needs to remain consistent. Later in this project, I planned to install Active Directory Domain Services (AD DS) and DNS, both of which depend on clients always being able to locate the server using the same IP address.
 20.  From Local Server, I clicked the Ethernet link to open the network settings.
@@ -272,9 +278,11 @@ Remote Desktop
 Enabled Remote Desktop and selected the option that allows connections from any version of Remote Desktop, which was sufficient for this lab environment.
 After renaming the server, Windows Server restarted automatically. Once it had rebooted, I logged back in and returned to Local Server to verify that the computer name and all of the configuration changes had been applied successfully.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/42906a55-c916-40de-8dec-1ba9d9393d22" />
+
 Section 4: Understanding Roles and Features
 Before I began installing any services on my Windows Server, I wanted to understand the difference between Roles and Features. Taking the time to learn this made the rest of the project much easier because it helped me understand how Windows Server is designed and why certain components need to be installed.
 I realised that a Windows Server doesn't automatically perform every possible function. Instead, it starts as a general-purpose operating system, and I decide what responsibilities it should take on by installing the appropriate server roles.
+
 What Is a Server Role?
 A server role defines the primary function or responsibility of a server. In simple terms, it answers the question:
 "What is this server supposed to do?"
@@ -299,6 +307,7 @@ Throughout this project, I installed both roles and features using the Add Roles
 Naming Servers in Professional Environments
 Another concept I found useful was learning how servers are named in real-world organisations.
 Rather than using random names such as planets, animals, or fictional characters, most organisations follow a structured naming convention that immediately identifies a server's purpose and, in many cases, its location. This makes server management and troubleshooting much easier, especially in environments with dozens or even hundreds of servers.
+
 Some examples include:
 •	DMT-MEL-AD01 → Daniel Mitchell Training, Melbourne, Active Directory, Server 01
 •	DMT-SYD-FS01 → Daniel Mitchell Training, Sydney, File Server, Server 01
@@ -309,16 +318,19 @@ For my own home lab, I kept the naming simple and practical by using names such 
 Section 3: First-Time Setup and Basic Configuration
 With Windows Server 2025 successfully installed, my next step was to perform the initial server configuration. Before installing any server roles or additional features, I wanted to ensure the operating system was configured correctly and ready for the rest of the project.
 There are a few essential tasks that I always complete on a newly installed Windows Server. These include configuring the correct time zone, assigning a static IP address, enabling Remote Desktop, and renaming the server. Completing these baseline configurations early helps create a stable environment and prevents configuration issues later, especially when deploying services such as Active Directory and DNS.
+
 Step 1: Opening Server Manager
 After logging into Windows Server for the first time, Server Manager launched automatically. This is the primary management console for Windows Server, providing a central location for configuring the server, installing roles and features, and monitoring its health.
 Since I would be using Server Manager throughout this project, I pinned it to the taskbar for quick access.
 From the navigation pane on the left, I selected Local Server. This page displays the server's current configuration, including the computer name, network settings, time zone, Remote Desktop status, and several other system properties. One feature I particularly appreciate is that almost every setting on this page can be modified simply by clicking its current value.
+
 Step 2: Configuring the Correct Time Zone
 Having the correct system time is important for authentication, logging, and communication between servers. To ensure the server reflected my local region, I updated the time zone before continuing with the rest of the configuration.
 13.	In Local Server, I located the Time Zone field.
 14.	I clicked the current time zone to open the Date and Time settings.
 15.	Next, I selected Change time zone... and chose the time zone that matched my location.
 16.	After clicking OK, the system clock updated immediately to reflect the correct local time.
+
 Step 3: Disabling Internet Explorer Enhanced Security Configuration
 Windows Server enables Internet Explorer Enhanced Security Configuration (IE ESC) by default. This feature is designed to improve security by restricting web browsing, but it can also make downloading software, drivers, and updates unnecessarily difficult during a lab setup.
 Because this server was being used in a controlled home lab environment, I chose to disable the feature temporarily to make the configuration process smoother.
@@ -326,6 +338,7 @@ Because this server was being used in a controlled home lab environment, I chose
 18.	I changed the setting to Off for both Administrators and Users.
 19.	Finally, I clicked OK to apply the changes.
 Note: In a production environment, I would leave Internet Explorer Enhanced Security Configuration enabled because it provides an additional layer of protection against malicious websites. I disabled it here solely because this server was built for learning and testing purposes.
+
 Step 4: Assigning a Static IP Address
 One of the most important configuration tasks was assigning the server a static IP address. Unlike client computers, servers should not rely on DHCP because their network address needs to remain consistent. Later in this project, I planned to install Active Directory Domain Services (AD DS) and DNS, both of which depend on clients always being able to locate the server using the same IP address.
 20.	From Local Server, I clicked the Ethernet link to open the network settings.
@@ -340,6 +353,7 @@ One of the most important configuration tasks was assigning the server a static 
 24.	After entering the required information, I clicked OK twice to save the configuration. As expected, the network connection disconnected briefly before reconnecting with the new settings.
 25.	To confirm everything had been configured correctly, I reopened the adapter, selected Status, then Details, and verified that the IP address matched the one I had assigned.
 Tip: I made a note of the server's static IP address because I would be using it repeatedly throughout the remainder of this project whenever another device needed to communicate with the server.
+
 Step 5: Completing the Remaining Configuration with SConfig
 Although Windows Server provides a graphical interface for most administrative tasks, Microsoft also includes a useful command-line utility called SConfig. I found this tool particularly helpful because it allows several common configuration tasks to be completed quickly from a simple numbered menu. It's especially useful when configuring multiple servers, as it helps maintain consistency across each installation.
 To launch the tool, I opened Windows Terminal (Administrator) and entered the following command:
@@ -352,6 +366,7 @@ Option	Configuration	Action Taken
 7	Remote Desktop	Enabled Remote Desktop and selected the option that allows connections from any version of Remote Desktop, which was sufficient for this lab environment.
 After renaming the server, Windows Server restarted automatically. Once it had rebooted, I logged back in and returned to Local Server to verify that the computer name and all of the configuration changes had been applied successfully.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/a3c9d746-b42c-4d7e-b57e-d2bc5cc133cb" />
+
 Section 6: Creating DNS Records
 With the DNS Server role installed and configured, I wanted to gain a deeper understanding of how DNS records are created and managed manually. Although Windows automatically creates many DNS records—for example, when a computer joins the domain or when certain server roles are installed—I knew there would be situations where I would need to create records myself. Learning how to do this manually would help me troubleshoot DNS issues more effectively and give me greater control over my network environment.
 Opening DNS Manager
@@ -400,12 +415,14 @@ nslookup 192.168.1.1
 This time, the command successfully resolved the IP address back to router.corp.danieltraining.com, confirming that the PTR record had been created correctly and that reverse name resolution was functioning as expected.
 Completing these exercises gave me a much better understanding of how forward and reverse DNS work together. Although Windows automatically manages many DNS records in an Active Directory environment, knowing how to create and verify A, CNAME, and PTR records manually is an essential skill for troubleshooting network connectivity and administering Windows Server environments.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/09144be3-49f4-49cd-a561-e855915b4f98" />
+
 Section 7: Creating Organisational Units, Users, and Security Groups
 With my domain controller fully configured and DNS working as expected, the next step was to begin building the Active Directory environment. At this stage, the domain was essentially empty, so I needed to create the structure that would eventually hold all of my users, groups, and computers.
 This was one of the most interesting parts of the project because it closely reflects the kind of work carried out by IT Support Engineers and System Administrators on a daily basis. Every organisation relies on Active Directory to organise its users, manage permissions, and control access to resources, so understanding how these objects fit together is a fundamental skill.
 Opening Active Directory Users and Computers
 13.	I opened Server Manager, selected Tools, and then clicked Active Directory Users and Computers.
 14.	Once the console opened, I expanded my domain (corp.danieltraining.com) from the left-hand pane. Windows had already created several default containers, which serve different purposes within Active Directory. Rather than modifying these default containers, I decided to create my own organisational structure to keep everything organised and easier to manage.
+
 Step 1: Creating Organisational Units (OUs)
 One of the first things I learned about Active Directory is that Organisational Units (OUs) work much like folders. They allow administrators to organise users, computers, and groups into a logical structure.
 More importantly, OUs make it possible to apply Group Policy. Any policy linked to an OU automatically affects every object stored inside it, making administration much simpler as the environment grows.
@@ -417,6 +434,7 @@ To build my Active Directory structure, I created the following OUs:
 19.	Finally, I created another OU named Servers, which I would later use to organise any Windows Servers that joined the domain.
 Although this structure is fairly simple, it mirrors how many organisations organise their Active Directory environments.
 Note: There is no single "correct" way to structure OUs. Some organisations organise them by department (such as HR, Finance, and IT), while others organise them by office location or business function. What matters most is choosing a structure that is logical, consistent, and easy to manage as the environment grows.
+
 Step 2: Creating User Accounts
 With the organisational structure in place, I moved on to creating user accounts.
 20.	I selected the End Users OU.
@@ -432,6 +450,7 @@ I repeated the same process to create two additional users:
 Creating multiple users helped make my lab feel more like a real business environment instead of a domain with only a single administrator account.
 Why require a password change?
 In a real organisation, administrators usually assign a temporary password when creating a new account. By enabling User must change password at next logon, the user creates their own password the first time they sign in. This improves security because administrators never need to know or store a user's permanent password.
+
 Step 3: Adding Additional User Information
 Creating the user account is only part of the process. In many organisations, administrators also maintain additional information about each employee inside Active Directory.
 To explore these options, I opened the properties of James Smith by double-clicking his account and completed several of the available fields.
@@ -439,6 +458,7 @@ Within the General tab, I added a brief description identifying James as an IT A
 Under the Account tab, I noted that an account expiry date can be configured. This is particularly useful for contractors, temporary staff, or interns whose accounts should automatically become inactive after a specific date.
 In the Organisation tab, I entered details such as the user's job title, department, company name, and reporting manager. For this exercise, I assigned Emma Johnson as James's manager.
 Finally, I looked at the Member Of tab, which displays the security groups that a user belongs to. At this stage, the list was empty because I had not yet created or assigned any security groups.
+
 Step 4: Creating Security Groups
 Once my user accounts were in place, the next task was to create security groups.
 Security groups allow administrators to assign permissions to a group rather than to individual users. This approach makes managing access much easier, especially in larger organisations. Instead of granting permissions to every employee individually, administrators simply add users to the appropriate group.
@@ -467,6 +487,7 @@ After completing these tasks, my Active Directory environment contained a realis
 •	Emma Johnson had not yet been assigned to any security group.
 Although this was a relatively small environment, creating these organisational units, user accounts, and security groups helped me understand how businesses organise their Active Directory infrastructure. More importantly, it laid the foundation for the next stages of the project, where these users and groups would be used to manage permissions, apply Group Policies, and control access to shared resources.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/b748f9e4-cbb9-4392-becf-da66fe7d595b" />
+
 Section 8: Joining a Second Server to the Domain
 Up to this point, my lab consisted of a single Windows Server acting as the Domain Controller. While this was enough to learn the basics of Active Directory, I knew that real-world environments rarely rely on just one server. Different servers are typically assigned different responsibilities to improve performance, security, and manageability.
 To make my lab more realistic, I created a second Windows Server virtual machine (server02) and joined it to the domain I had already created on server01. This would allow me to assign additional roles to server02 later in the project, such as configuring it as a dedicated file server.
@@ -513,6 +534,7 @@ Once server02 restarted, I signed in using the domain administrator account rath
 At this point, my lab had evolved from a standalone server into a small Windows domain consisting of two connected servers. From here, I could centrally manage server02 from server01, apply Group Policies, install additional server roles, and manage both systems through Active Directory.
 Although my environment only contained two servers, the setup closely reflected how many enterprise networks are structured, where different servers perform different roles while remaining centrally managed within the same Active Directory domain. This milestone laid the foundation for the remaining stages of the project, where I would continue expanding the capabilities of my Windows Server environment.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/d4e9892f-395a-4d2c-9c68-be5642b08fa4" />
+
 Section 9: Group Policy Objects (GPOs)
 As I continued building my Windows Server environment, I reached one of the features that truly demonstrates the power of Active Directory—Group Policy. At first, Group Policy seemed overwhelming because of the sheer number of settings available. However, once I understood how it works, it quickly became one of my favourite administrative tools.
 At its core, Group Policy allows me to configure a setting once and automatically apply it to multiple users or computers across the network. Instead of configuring every device individually, I can create a single policy, link it to the appropriate location in Active Directory, and let Windows handle the rest.
@@ -564,6 +586,7 @@ Because my lab contained only one Domain Controller (server01), all five FSMO ro
 Learning about FSMO roles gave me a much better understanding of how Active Directory functions behind the scenes. It also reinforced the importance of documenting infrastructure carefully. During an outage or disaster recovery scenario is the worst possible time to discover that you don't know which server holds your critical Active Directory roles.
 By the end of this section, I felt much more confident using Group Policy. I had learned how policies are processed, explored the default security settings that Windows applies automatically, created and linked my own custom GPO, forced policy updates for testing, and identified the FSMO role holders within my domain. These are all tasks that form part of the day-to-day responsibilities of Windows Server administrators and IT support professionals.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/e83cedbd-09f7-4416-bc6a-3b9e540b3af6" />
+
 Section 10: Installing and Configuring DHCP
 After configuring Active Directory and DNS, the next service I needed to set up was Dynamic Host Configuration Protocol (DHCP). DHCP is responsible for automatically assigning IP addresses and other network settings to devices as they connect to the network.
 Without DHCP, every computer, laptop, printer, or other network device would have to be configured with a static IP address manually. While that might be manageable for a handful of devices, it quickly becomes impractical in larger environments. DHCP removes that burden by automatically providing each device with the correct network configuration, making network administration far more efficient.
@@ -629,6 +652,7 @@ By expanding the DHCP scope, I could view several useful sections:
 Reservations are especially useful for devices that should always keep the same IP address, such as printers, network switches, wireless access points, or other infrastructure devices. They provide the convenience of DHCP while ensuring that important devices always receive the same IP address whenever they reconnect to the network.
 Completing this section gave me a much better understanding of how DHCP works alongside Active Directory and DNS. Together, these three services form the foundation of most Windows enterprise networks. With DHCP automatically assigning network settings, DNS resolving device names, and Active Directory managing authentication, my lab environment was beginning to resemble the infrastructure commonly found in real-world organisations.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/ad362663-f931-4036-802d-7c416deb3103" />
+
 Section 11: Storage Spaces. Creating Storage Pools and Virtual Disks
 As I continued building my Windows Server lab, I wanted to explore one of Windows Server's built-in storage technologies: Storage Spaces. This feature allows multiple physical or virtual disks to be combined into a single storage pool, from which virtual disks can be created with different levels of redundancy and fault tolerance.
 One of the things I found most interesting about Storage Spaces is that it provides functionality similar to a traditional hardware RAID controller, but entirely through software. This means I can build resilient storage without requiring any additional hardware, making it an excellent solution for home labs and small environments.
@@ -685,6 +709,7 @@ Get-Volume
 These commands allowed me to verify that the storage pool, virtual disk, and formatted volume had all been created successfully. Using PowerShell alongside the graphical management tools also gave me additional confidence that the Storage Spaces configuration was functioning exactly as intended.
 Completing this exercise helped me understand how Windows Server can provide enterprise-style storage management without requiring dedicated RAID hardware. It also demonstrated how Storage Spaces can improve both flexibility and fault tolerance, making it a valuable feature for home labs as well as production environments.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/c4bbd8f8-1670-48cf-a53d-278ffbe5a582" />
+
 Section 12: File Server. Creating Shared Folders and Mapping Network Drives
 One of the most common responsibilities of a Windows Server is acting as a File Server. Whether it's documents, spreadsheets, project files, or departmental resources, organisations rely on file servers to provide a central location where employees can securely store, access, and share data.
 In this section, I configured server01 to function as a file server by creating a shared folder on the Z: drive that I created using Storage Spaces. After configuring the appropriate permissions, I tested access from server02 and finished by mapping the shared folder as a network drive.
@@ -737,6 +762,7 @@ The shared folder now appeared in File Explorer as the Z: drive on server02, mak
 In a larger organisation, administrators wouldn't normally configure drive mappings manually for every user. Instead, this process would typically be automated using Group Policy, allowing network drives to be mapped automatically whenever users sign in. Seeing how simple the manual process was made it easier for me to appreciate how powerful Group Policy can be when managing hundreds or even thousands of computers.
 By completing this section, I had successfully transformed server01 into a functioning file server. Users on other domain-joined machines could access shared resources over the network, store files centrally, and work with them as though they were located on their own computers. This is one of the core services provided by Windows Server in many enterprise environments, and implementing it in my lab gave me valuable hands-on experience with file sharing, permissions management, and network drive mapping.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/532dc367-f7f7-4e91-a82b-ac086445aee7" />
+
 Section 13: Understanding and Configuring NTFS Permissions
 After creating my shared folders, the next step was learning how to control who could access them and what they were allowed to do. This is where NTFS permissions come in.
 I found NTFS permissions to be one of the most important concepts in Windows Server administration. At first, the different permission levels seemed confusing, but once I understood how they work together, it became much easier to see why they are used in almost every Windows environment.
@@ -776,6 +802,7 @@ Using security groups makes administration far more efficient. If an employee jo
 This approach not only reduces administrative effort but also helps maintain consistency, improves security, and makes troubleshooting permissions much easier.
 By completing this section, I gained a much clearer understanding of how Windows controls access to files and folders. Combined with Active Directory security groups and shared folders, NTFS permissions provide a powerful and flexible way to ensure that users can access only the resources they need while protecting sensitive information from unauthorized access.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/286ed57c-0e65-4fa4-b795-0c9aef061c67" />
+
 Section 14: Managing Windows Updates
 After configuring the core services in my Windows Server environment, one of the final administrative tasks I explored was Windows Update. While installing roles and configuring Active Directory are important, keeping a server updated is just as critical.
 Microsoft regularly releases updates to address newly discovered security vulnerabilities, improve system stability, fix bugs, and occasionally introduce new features. One thing I learned during this project is that an unpatched server can quickly become a security risk. In fact, many successful cyberattacks exploit systems that are missing important security updates.
@@ -819,6 +846,7 @@ Instead, updates are usually deployed centrally using enterprise management solu
 Using these centralised tools allows administrators to test updates before deployment, schedule maintenance windows, monitor compliance, and ensure that every server and workstation receives the required security patches without having to manage each machine individually.
 Completing this section reinforced an important lesson: installing Windows Server is only the beginning. Keeping the server patched and regularly maintained is an ongoing responsibility that plays a vital role in protecting systems from security threats, improving reliability, and ensuring the overall health of the IT environment.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/7f8942ad-c390-4373-a60c-e68bfc9ce408" />
+
 Section 15: Using Event Viewer to Read and Filter Logs
 As I progressed through my Windows Server project, I wanted to become familiar with one of the most important troubleshooting tools available to every Windows administrator—Event Viewer.
 Almost everything that happens on a Windows Server is recorded somewhere, and Event Viewer is where those records are stored. Whether a user signs in, a service starts successfully, a driver fails, a piece of hardware encounters an error, or a security event occurs, Windows logs the activity for future reference.
@@ -959,6 +987,7 @@ Every open network port represents another potential entry point into a system. 
 This follows the Principle of Least Privilege, which states that systems should only be given the minimum level of access required to perform their intended function. The same philosophy applies to firewall configuration deny everything by default and explicitly allow only the traffic that is genuinely needed.
 By completing this section, I gained practical experience with one of the most important security features built into Windows Server. I learned how firewall rules regulate network communication, how Windows automatically creates rules for installed server roles, and how to manually create custom rules for new applications. More importantly, I developed a better appreciation of how proper firewall management helps protect servers while still allowing legitimate services to remain accessible.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/ab464da3-6de0-462f-93a6-a6ed6f2de07a" />
+
 Section 17: Microsoft Defender Antivirus
 After completing the core configuration of my Windows Server lab, I wanted to make sure the server was protected against malware and other security threats. Thankfully, Windows Server 2025 comes with Microsoft Defender Antivirus built in, so I didn't need to install any additional antivirus software before securing the system.
 While many organisations complement Defender with dedicated Endpoint Detection and Response (EDR) platforms, I found that Microsoft Defender Antivirus provides a solid baseline level of protection. For a home lab like mine—or any server that doesn't yet have a third-party security solution installed—it offers more than enough functionality to help keep the system secure.
@@ -970,7 +999,7 @@ Before doing anything else, I wanted to confirm that Microsoft Defender was acti
 If Defender had displayed a warning or indicated that protection was turned off, I would have opened the section and enabled it before continuing.
 3.	I also confirmed that App & browser control was enabled, providing another layer of protection against malicious applications and unsafe downloads.
 Seeing every protection area marked as healthy gave me confidence that the server's built-in security features were functioning as expected.
-________________________________________
+
 Running a Malware Scan
 With Defender confirmed to be running, I performed a malware scan to verify that the server was free from any known threats.
 4.	From Windows Security, I opened Virus & threat protection.
@@ -979,7 +1008,7 @@ A Quick Scan focuses on the parts of Windows where malware is most likely to hid
 6.	I also explored Scan options, where I found the Full Scan feature.
 Unlike a Quick Scan, a Full Scan examines every file on every drive attached to the server. Although it takes significantly longer to complete, it provides a much more comprehensive inspection and is ideal for routine maintenance or whenever suspicious behaviour needs to be investigated.
 Understanding the difference between these scan types helped me appreciate when each one would be most appropriate.
-________________________________________
+
 Updating Security Intelligence
 One thing I quickly realised is that antivirus software is only effective if it can recognise the latest threats.
 Microsoft Defender relies on regularly updated security intelligence, sometimes referred to as virus definitions, to identify newly discovered malware.
@@ -988,7 +1017,7 @@ To make sure my server was using the latest protection, I completed the followin
 8.	I selected Check for updates.
 If newer security intelligence was available, Windows automatically downloaded and installed it.
 This reminded me that keeping antivirus definitions up to date is just as important as keeping Windows itself updated. As new malware variants appear every day, regularly updating Defender ensures it remains capable of detecting the latest threats.
-________________________________________
+
 Reviewing Microsoft Defender Settings
 To better understand how Microsoft Defender protects Windows Server in real time, I opened:
 Virus & threat protection → Manage settings
@@ -1013,7 +1042,7 @@ Exclusions
 Finally, I reviewed the Exclusions section.
 Exclusions allow trusted files, folders, or applications to be ignored during antivirus scanning.
 While this can solve issues where legitimate software is mistakenly identified as malicious, I learned that exclusions should only be used after carefully verifying that the application is completely safe. Creating unnecessary exclusions could leave parts of the system unprotected.
-________________________________________
+
 Microsoft Defender in Enterprise Environments
 As I researched Microsoft Defender further, I discovered that many organisations build upon its capabilities with more advanced endpoint security platforms.
 One example is Microsoft Defender for Endpoint, which extends the standard antivirus features by providing:
@@ -1024,11 +1053,12 @@ One example is Microsoft Defender for Endpoint, which extends the standard antiv
 •	Endpoint visibility across an entire organisation
 I also learned that many businesses use third-party Endpoint Detection and Response (EDR) solutions such as CrowdStrike Falcon, SentinelOne, or Sophos Intercept X, depending on their operational requirements and existing security infrastructure.
 These platforms provide deeper visibility into endpoint activity and enable security teams to detect, investigate, and respond to sophisticated cyber threats across thousands of devices from a central management console.
-________________________________________
+
 Reflection
 Completing this section gave me a much stronger understanding of Microsoft's built-in endpoint protection and how it fits into the overall security of a Windows Server environment. Rather than simply relying on the default settings, I learned how to verify that Defender was operating correctly, perform both quick and full malware scans, update its security intelligence, and review the features responsible for protecting the server in real time.
 More importantly, this exercise reinforced that effective server security isn't achieved through a single tool. It comes from combining multiple layers of protection—including regular Windows updates, a properly configured firewall, strong access controls, and continuously updated antivirus software. Microsoft Defender Antivirus forms an important part of that layered security approach, and gaining hands-on experience with it has strengthened both my understanding of Windows Server administration and my appreciation for proactive endpoint security.
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/8214f147-88c8-4fb7-8121-c3141fcf4b83" />
+
 Section 17: Microsoft Defender Antivirus
 After completing the core configuration of my Windows Server lab, I wanted to make sure the server was protected against malware and other security threats. Thankfully, Windows Server 2025 comes with Microsoft Defender Antivirus built in, so I didn't need to install any additional antivirus software before securing the system.
 While many organisations complement Defender with dedicated Endpoint Detection and Response (EDR) platforms, I found that Microsoft Defender Antivirus provides a solid baseline level of protection. For a home lab like mine—or any server that doesn't yet have a third-party security solution installed—it offers more than enough functionality to help keep the system secure.
@@ -1040,7 +1070,7 @@ Before doing anything else, I wanted to confirm that Microsoft Defender was acti
 If Defender had displayed a warning or indicated that protection was turned off, I would have opened the section and enabled it before continuing.
 3.	I also confirmed that App & browser control was enabled, providing another layer of protection against malicious applications and unsafe downloads.
 Seeing every protection area marked as healthy gave me confidence that the server's built-in security features were functioning as expected.
-________________________________________
+
 Running a Malware Scan
 With Defender confirmed to be running, I performed a malware scan to verify that the server was free from any known threats.
 4.	From Windows Security, I opened Virus & threat protection.
@@ -1049,7 +1079,7 @@ A Quick Scan focuses on the parts of Windows where malware is most likely to hid
 6.	I also explored Scan options, where I found the Full Scan feature.
 Unlike a Quick Scan, a Full Scan examines every file on every drive attached to the server. Although it takes significantly longer to complete, it provides a much more comprehensive inspection and is ideal for routine maintenance or whenever suspicious behaviour needs to be investigated.
 Understanding the difference between these scan types helped me appreciate when each one would be most appropriate.
-________________________________________
+
 Updating Security Intelligence
 One thing I quickly realised is that antivirus software is only effective if it can recognise the latest threats.
 Microsoft Defender relies on regularly updated security intelligence, sometimes referred to as virus definitions, to identify newly discovered malware.
@@ -1058,7 +1088,7 @@ To make sure my server was using the latest protection, I completed the followin
 8.	I selected Check for updates.
 If newer security intelligence was available, Windows automatically downloaded and installed it.
 This reminded me that keeping antivirus definitions up to date is just as important as keeping Windows itself updated. As new malware variants appear every day, regularly updating Defender ensures it remains capable of detecting the latest threats.
-________________________________________
+
 Reviewing Microsoft Defender Settings
 To better understand how Microsoft Defender protects Windows Server in real time, I opened:
 Virus & threat protection → Manage settings
@@ -1083,7 +1113,7 @@ Exclusions
 Finally, I reviewed the Exclusions section.
 Exclusions allow trusted files, folders, or applications to be ignored during antivirus scanning.
 While this can solve issues where legitimate software is mistakenly identified as malicious, I learned that exclusions should only be used after carefully verifying that the application is completely safe. Creating unnecessary exclusions could leave parts of the system unprotected.
-________________________________________
+
 Microsoft Defender in Enterprise Environments
 As I researched Microsoft Defender further, I discovered that many organisations build upon its capabilities with more advanced endpoint security platforms.
 One example is Microsoft Defender for Endpoint, which extends the standard antivirus features by providing:
