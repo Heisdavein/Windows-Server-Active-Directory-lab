@@ -11,7 +11,7 @@ The complete step-by-step build, including screenshots and detailed explanations
 
 ## What is this project?
 
-Big companies use something called a "server" — basically a powerful computer that manages everyone else's computers, logins, passwords, shared files, and internet settings. I wanted to learn how that works, so I built my own server at home using a program called VMware, which lets you run a "fake" computer (called a virtual machine) inside your real computer, without messing anything up.
+Big companies use something called a "server"  basically a powerful computer that manages everyone else's computers, logins, passwords, shared files, and internet settings. I wanted to learn how that works, so I built my own server at home using a program called VMware, which lets you run a "fake" computer (called a virtual machine) inside your real computer, without messing anything up.
 
 Think of it like a game inside a game I have my real laptop (Windows 11), and inside it, I created a pretend server computer (Windows Server 2025) that I could experiment on safely. If I broke something, I could just undo it or start over — no real damage done.
 
@@ -38,7 +38,7 @@ Think of it like a game inside a game I have my real laptop (Windows 11), and in
 - Added a second server and connected it to the first one, so they could work together
 - Used **Group Policy** to apply one rule to many computers at once (for example, blocking access to Control Panel for regular users)
 - Combined 5 small virtual hard drives into one big protected drive, so that if one drive fails, no data is lost (this is called Storage Spaces / RAID-style storage)
-- Set up a **file server** — a shared folder that other computers on the network could open, use, and save files to
+- Set up a **file server** a shared folder that other computers on the network could open, use, and save files to
 - Controlled exactly who could open, edit, or delete files using **permissions**
 - Set up a **firewall** to control what traffic is allowed in and out of the server (like a security guard checking IDs)
 - Turned on and tested **Microsoft Defender Antivirus** to protect against viruses and malware
